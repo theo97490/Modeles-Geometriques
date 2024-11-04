@@ -1,5 +1,6 @@
 .vs/
 Out/
+out/
 Temp/
 AppTinyMesh/Source/realtime-moc.cpp
 AppTinyMesh/Source/moc_qte.cpp

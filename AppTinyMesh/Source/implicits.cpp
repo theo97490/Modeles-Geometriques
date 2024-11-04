@@ -31,7 +31,7 @@ void AnalyticScalarField::Polygonize(int n, Mesh& g, const Box& box, const doubl
   std::vector<Vector> vertex;
   std::vector<Vector> normal;
 
-  std::vector<int> triangle;
+  std::vector<size_t> triangle;
 
   vertex.reserve(20000);
   normal.reserve(20000);
@@ -89,7 +89,7 @@ void AnalyticScalarField::Polygonize(int n, Mesh& g, const Box& box, const doubl
   {
     for (int j = nay; j < nby; j++)
     {
-      // We need a xor b, which can be implemented a == !b 
+      // We need a xor b, which can be implemented a == !b
       if (!((a[i * ny + j] < 0.0) == !(a[(i + 1) * ny + j] >= 0.0)))
       {
         vertex.push_back(Dichotomy(u[i * ny + j], u[(i + 1) * ny + j], a[i * ny + j], a[(i + 1) * ny + j], d[0], epsilon));
@@ -236,7 +236,7 @@ void AnalyticScalarField::Polygonize(int n, Mesh& g, const Box& box, const doubl
   delete[]eby;
   delete[]ez;
 
-  std::vector<int> normals = triangle;
+  std::vector<size_t> normals = triangle;
 
   g = Mesh(vertex, normal, triangle, normals);
 }

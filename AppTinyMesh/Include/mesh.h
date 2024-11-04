@@ -85,12 +85,12 @@ class Mesh
 protected:
   std::vector<Vector> vertices; //!< Vertices.
   std::vector<Vector> normals;  //!< Normals.
-  std::vector<int> varray;     //!< Vertex indexes.
-  std::vector<int> narray;     //!< Normal indexes.
+  std::vector<size_t> varray;     //!< Vertex indexes.
+  std::vector<size_t> narray;     //!< Normal indexes.
 public:
   explicit Mesh();
-  explicit Mesh(const std::vector<Vector>&, const std::vector<int>&);
-  explicit Mesh(const std::vector<Vector>&, const std::vector<Vector>&, const std::vector<int>&, const std::vector<int>&);
+  explicit Mesh(const std::vector<Vector>&, const std::vector<size_t>&);
+  explicit Mesh(const std::vector<Vector>&, const std::vector<Vector>&, const std::vector<size_t>&, const std::vector<size_t>&);
   ~Mesh();
 
   void Reserve(int, int, int, int);
@@ -104,8 +104,8 @@ public:
   int Triangles() const;
   int Vertexes() const;
 
-  std::vector<int> VertexIndexes() const;
-  std::vector<int> NormalIndexes() const;
+  std::vector<size_t> VertexIndexes() const;
+  std::vector<size_t> NormalIndexes() const;
 
   int VertexIndex(int, int) const;
   int NormalIndex(int, int) const;
@@ -133,7 +133,7 @@ protected:
 /*!
 \brief Return the set of vertex indexes.
 */
-inline std::vector<int> Mesh::VertexIndexes() const
+inline std::vector<size_t> Mesh::VertexIndexes() const
 {
   return varray;
 }
@@ -141,7 +141,7 @@ inline std::vector<int> Mesh::VertexIndexes() const
 /*!
 \brief Return the set of normal indexes.
 */
-inline std::vector<int> Mesh::NormalIndexes() const
+inline std::vector<size_t> Mesh::NormalIndexes() const
 {
   return narray;
 }
@@ -234,4 +234,3 @@ inline Vector Mesh::operator[](int i) const
 {
   return vertices[i];
 }
-

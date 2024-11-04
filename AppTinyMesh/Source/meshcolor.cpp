@@ -13,7 +13,7 @@ MeshColor::MeshColor()
 \param cols Color array.
 \param carr Color indexes, should be the same size as Mesh::varray and Mesh::narray.
 */
-MeshColor::MeshColor(const Mesh& m, const std::vector<Color>& cols, const std::vector<int>& carr) : Mesh(m), colors(cols), carray(carr)
+MeshColor::MeshColor(const Mesh& m, const std::vector<Color>& cols, const std::vector<size_t>& carr) : Mesh(m), colors(cols), carray(carr)
 {
 }
 

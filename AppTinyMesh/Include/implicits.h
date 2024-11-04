@@ -6,12 +6,16 @@
 
 #include "mesh.h"
 
-class AnalyticScalarField
+struct Implicit {
+  virtual double Value(const Vector&) const  { return 0; };
+};
+
+class AnalyticScalarField : public Implicit
 {
 protected:
 public:
   AnalyticScalarField();
-  virtual double Value(const Vector&) const;
+  double Value(const Vector&) const override;
   virtual Vector Gradient(const Vector&) const;
 
   // Normal

@@ -23,7 +23,7 @@ Indices must have a size multiple of three (three for triangle vertices and thre
 \param vertices List of geometry vertices.
 \param indices List of indices wich represent the geometry triangles.
 */
-Mesh::Mesh(const std::vector<Vector>& vertices, const std::vector<int>& indices) :vertices(vertices), varray(indices)
+Mesh::Mesh(const std::vector<Vector>& vertices, const std::vector<size_t>& indices) :vertices(vertices), varray(indices)
 {
   normals.resize(vertices.size(), Vector::Z);
 }
@@ -35,7 +35,7 @@ Mesh::Mesh(const std::vector<Vector>& vertices, const std::vector<int>& indices)
 \param normals Array of normals.
 \param va, na Array of vertex and normal indexes.
 */
-Mesh::Mesh(const std::vector<Vector>& vertices, const std::vector<Vector>& normals, const std::vector<int>& va, const std::vector<int>& na) :vertices(vertices), normals(normals), varray(va), narray(na)
+Mesh::Mesh(const std::vector<Vector>& vertices, const std::vector<Vector>& normals, const std::vector<size_t>& va, const std::vector<size_t>& na) :vertices(vertices), normals(normals), varray(va), narray(na)
 {
 }
 
@@ -66,7 +66,7 @@ This function weights the normals of the faces by their corresponding area.
 */
 void Mesh::SmoothNormals()
 {
-  // Initialize 
+  // Initialize
   normals.resize(vertices.size(), Vector::Null);
 
   narray = varray;
@@ -80,7 +80,7 @@ void Mesh::SmoothNormals()
     normals[narray[i + 2]] += tn;
   }
 
-  // Normalize 
+  // Normalize
   for (int i = 0; i < normals.size(); i++)
   {
     Normalize(normals[i]);
@@ -306,4 +306,3 @@ void Mesh::SaveObj(const QString& url, const QString& meshName) const
   out.flush();
   data.close();
 }
-

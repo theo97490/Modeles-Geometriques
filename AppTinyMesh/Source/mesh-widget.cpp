@@ -38,8 +38,8 @@ MeshWidget::MeshGL::MeshGL(const Mesh& mesh, const Vector& position) : MeshGL()
     bbox = mesh.GetBox();
 
     // Compute plain arrays of sorted vertices & normals
-    std::vector<int> vertexIndexes = mesh.VertexIndexes();
-    std::vector<int> normalIndexes = mesh.NormalIndexes();
+    std::vector<size_t> vertexIndexes = mesh.VertexIndexes();
+    std::vector<size_t> normalIndexes = mesh.NormalIndexes();
     assert(vertexIndexes.size() == normalIndexes.size());
 
     int nbVertex = int(vertexIndexes.size());
@@ -62,8 +62,8 @@ MeshWidget::MeshGL::MeshGL(const Mesh& mesh, const Vector& position) : MeshGL()
         normals[i * 3 + 2] = float(normal[2]);
     }
     // Indices are now sorted
-    int* indices = new int[nbVertex];
-    for (int i = 0; i < nbVertex; i++)
+    unsigned int* indices = new unsigned int[nbVertex];
+    for (unsigned int i = 0; i < nbVertex; i++)
         indices[i] = i;
     triangleCount = nbVertex;
 
@@ -100,7 +100,7 @@ MeshWidget::MeshGL::MeshGL(const Mesh& mesh, const Vector& position) : MeshGL()
     // Triangles
     glGenBuffers(1, &indexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * nbVertex, indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * nbVertex, indices, GL_STATIC_DRAW);
 
     // Free data
     delete[] vertices;
@@ -117,9 +117,9 @@ MeshWidget::MeshGL::MeshGL(const MeshColor& mesh, const Vector& fr) : MeshGL()
     bbox = mesh.GetBox();
 
     // Compute plain arrays of sorted vertices & normals
-    std::vector<int> vertexIndexes = mesh.VertexIndexes();
-    std::vector<int> normalIndexes = mesh.NormalIndexes();
-    std::vector<int> colorIndexes = mesh.ColorIndexes();
+    std::vector<size_t> vertexIndexes = mesh.VertexIndexes();
+    std::vector<size_t> normalIndexes = mesh.NormalIndexes();
+    std::vector<size_t> colorIndexes = mesh.ColorIndexes();
     assert(vertexIndexes.size() == normalIndexes.size());
 
     int nbVertex = int(vertexIndexes.size());
@@ -195,7 +195,7 @@ MeshWidget::MeshGL::MeshGL(const MeshColor& mesh, const Vector& fr) : MeshGL()
     // Triangles
     glGenBuffers(1, &indexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * nbVertex, indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(size_t) * nbVertex, indices, GL_STATIC_DRAW);
 
     // Free data
     delete[] vertices;
